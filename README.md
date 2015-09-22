@@ -24,66 +24,46 @@ requests here.
 
 Anton Gerdelan, 2 July 2014.
 
-##Compiling##
-The libraries reside in the common/ folder
+# About this fork
 
-* common/include - header files
-* common/linux_i386 - 32-bit linux libraries
-* common/linux_x86_64 - 64-bit linux libraries
-* common/msvc110 - 32-bit Windows visual studio libraries
-* common/osx_64 - 64-bit apple OS X libraries
-* common/win32 - 32-bit Windows GCC (mingw) libraries
+This fork describes a simple setup on OS X to run the demo code using homebrew
+to install the libraries. Each example directory contains a `Makefile_Brew.osx`
+file which is a make file updated to use the dependencies as installed by Brew.
+All the examples have been tested and run correctly.
 
-###Linux###
+If you find any problem, please open an issue on this fork or better fork this
+repo and send a Pull Request!!!
 
-* install the GNU Compiler Collection - usually by installing a
-"build-essentials" package via the package manager on your distribution.
-* open a terminal and cd to the demo of choice
+###Installing GLEW and GLFW3
+* brew install --universal glew
+* brew install --universal glfw3
 
-64-bit systems:
+###Initial Repo Setup
+* $ Clone this forked repo. This repo is adapted to run on OS X without any
+  modifications on your part.
+* Alternatively, you can also fork this repo and then clone your fork, if you
+wish to make modifications.
 
-`make -f Makefile.linux64`
+###About Brew based Makefiles for OS X
 
-32-bit systems:
+The Makefiles for OS X have been adapted to link to GLEW and GLFW installed via
+brew above, while generating the output executable in each example directory.
 
-`make -f Makefile.linux32`
+The adapated make file is:`Makefile_Brew.osx`.
 
-###64-bit Apple OS X###
+###Running the first_test/main.cpp
+* $ cd `path to your repo dir`
+* $ cd first_test
+* $ make -f Makefile_Brew.osx
+* $ ./demo
 
-I don't have an Apple machine so these may not all have a Makefile available
-right away. I'll do my best to update this and test all the projects - check
-back for updates. The Apple drivers are not great - expect bugs in some demos.
+###### will return for example:
+Renderer: NVIDIA GeForce GT 650M OpenGL Engine
 
-* install the GNU Compiler Collection - usually by installing XCode
-* open a terminal and cd to the demo of choice
+OpenGL version supported 4.1 NVIDIA-10.2.7 310.41.25f01
 
-`make -f Makefile.osx`
-
-###Windows with GCC###
-
-I only provided 32-bit versions of the Makefile and libraries here. If you want
-to add a 64-bit build it's pretty easy to copy the 32-bit Makefile and change
-the folder. You will need to recompile GLFW, GLEW, AssImp, and Freetype though.
-The 32-bit builds will run on all Windows machines - I use 32-bit builds on my
-64-bit Windows.
-
-* install the GNU Compiler Collection - usually by installing the MinGW toolkit.
-http://www.mingw.org/
-* open a console and cd to the demo of choice
-
-`make -f Makefile.win32`
-
-* copy the .dll files from the main folder to the demo folder
-
-###Windows with Visual Studio###
-
-I provided some Visual Studio 2012 project files.
-You can find an overarching solution file in the main folder. This should
-convert well to most versions of visual studio. I used 32-bit versions of the
-libraries, but there's no reason that you can't add 64-bit versions if you
-prefer.
-
-##SDL2 Port##
-
-Dr Aidan Delaney at the University of Brighton has made an SDL2 port (as an alternative to using GLFW), which you can find on GitHub https://github.com/AidanDelaney/antons_opengl_tutorials_book/tree/sdl2-port/00_hello_triangle
-(see Makefile.linux64)
+###Running all the other examples
+* $ cd `path to your forked clone repo dir`
+* $ make -f `path_to_example`
+* $ make -f Makefile_Brew.osx
+* $ ./<BIN_FILE_NAME_IN_MAKE_FILE>;;; to run the example
