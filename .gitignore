@@ -13,3 +13,4 @@ first_test/demo
 03_vertex_buffer_objects/vbuffs
 04_mats_and_vecs/matsvecs
 05_virtual_camera/vcam
+06_vcam_with_quaternion/quats
